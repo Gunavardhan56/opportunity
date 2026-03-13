@@ -44,6 +44,11 @@ export const getOpportunities = async () => {
   return res.data;
 };
 
+export const getOpportunity = async (opportunityId) => {
+  const res = await api.get(`/opportunities/${opportunityId}`);
+  return res.data;
+};
+
 export const getEligibleOpportunities = async (userId) => {
   const res = await api.get(`/eligible_opportunities/${userId}`);
   return res.data;

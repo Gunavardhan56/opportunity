@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { getDeadlines } from "../api/api";
 
 function urgencyColor(deadlineDateIso) {
@@ -16,6 +17,7 @@ function urgencyColor(deadlineDateIso) {
 }
 
 export default function Deadlines() {
+  const navigate = useNavigate();
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -76,14 +78,14 @@ export default function Deadlines() {
                 {opp.deadline || "Deadline soon"}
               </span>
               <div className="flex justify-end gap-2">
-                <a
-                  href={opp.link || "#"}
-                  target="_blank"
-                  rel="noreferrer"
+                <button
+                  type="button"
                   className={`btn-secondary text-xs ${opp.link ? "" : "pointer-events-none opacity-50"}`}
+                  disabled={!opp.link}
+                  onClick={() => opp?._id && navigate(`/opportunity/${opp._id}`)}
                 >
                   View
-                </a>
+                </button>
                 <button
                   type="button"
                   className="btn-primary text-xs"

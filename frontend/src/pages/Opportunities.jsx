@@ -1,8 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { getOpportunities } from "../api/api";
 import OpportunityCard from "../components/OpportunityCard";
 
 export default function Opportunities() {
+  const navigate = useNavigate();
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -107,6 +109,7 @@ export default function Opportunities() {
             key={opp._id}
             opportunity={opp}
             onApply={() => window.open(opp.link || "#", "_blank")}
+            onView={() => navigate(`/opportunity/${opp._id}`)}
           />
         ))}
       </div>

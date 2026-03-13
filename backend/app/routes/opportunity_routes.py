@@ -182,6 +182,20 @@ def list_opportunities():
     return [_serialize_document(doc) for doc in docs]
 
 
+@router.get("/opportunities/{opportunity_id}")
+def get_opportunity(opportunity_id: str):
+    try:
+        obj_id = ObjectId(opportunity_id)
+    except Exception:
+        raise HTTPException(status_code=400, detail="Invalid opportunity_id.")
+
+    doc = opportunities_collection.find_one({"_id": obj_id})
+    if not doc:
+        raise HTTPException(status_code=404, detail="Opportunity not found.")
+
+    return _serialize_document(doc)
+
+
 @router.get("/deadline_soon")
 def deadline_soon():
     from datetime import datetime as _dt, timedelta as _td

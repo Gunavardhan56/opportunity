@@ -1,4 +1,4 @@
-export default function OpportunityCard({ opportunity, onApply }) {
+export default function OpportunityCard({ opportunity, onApply, onView }) {
   const { company, role, skills = [], deadline, link } = opportunity || {};
 
   return (
@@ -27,16 +27,14 @@ export default function OpportunityCard({ opportunity, onApply }) {
         </div>
       )}
       <div className="flex justify-end gap-2 mt-1">
-        {link && (
-          <a
-            href={link}
-            target="_blank"
-            rel="noreferrer"
-            className="btn-secondary text-xs"
-          >
-            View
-          </a>
-        )}
+        <button
+          type="button"
+          className={`btn-secondary text-xs ${link ? "" : "pointer-events-none opacity-50"}`}
+          onClick={() => link && onView?.(opportunity)}
+          disabled={!link}
+        >
+          View
+        </button>
         <button
           className="btn-primary text-xs"
           onClick={() => onApply?.(opportunity)}

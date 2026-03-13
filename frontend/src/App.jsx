@@ -10,6 +10,7 @@ import OnboardingProfile from "./pages/OnboardingProfile";
 import OnboardingTelegram from "./pages/OnboardingTelegram";
 import Dashboard from "./pages/Dashboard";
 import Opportunities from "./pages/Opportunities";
+import OpportunityDetails from "./pages/OpportunityDetails";
 import Eligible from "./pages/Eligible";
 import Deadlines from "./pages/Deadlines";
 import Matches from "./pages/Matches";
@@ -166,6 +167,14 @@ export default function App() {
           element={
             <ProtectedLayout user={auth} userSynced={userSynced} onLogout={handleLogout}>
               <Opportunities />
+            </ProtectedLayout>
+          }
+        />
+        <Route
+          path="/opportunity/:id"
+          element={
+            <ProtectedLayout user={auth} userSynced={userSynced} onLogout={handleLogout}>
+              <OpportunityDetails />
             </ProtectedLayout>
           }
         />

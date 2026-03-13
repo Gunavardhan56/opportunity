@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { getEligibleOpportunities } from "../api/api";
 
 function MatchBar({ score }) {
@@ -13,6 +14,7 @@ function MatchBar({ score }) {
 }
 
 export default function Eligible({ user }) {
+  const navigate = useNavigate();
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -61,6 +63,7 @@ export default function Eligible({ user }) {
           const score = Math.round((match?.score ?? 0) * 100);
           const isEligible = match?.eligible;
           const link = opportunity?.link || "";
+          const oppId = opportunity?._id || "";
           return (
             <div
               key={match?._id}
@@ -93,14 +96,14 @@ export default function Eligible({ user }) {
                 </div>
                 <MatchBar score={score} />
                 <div className="flex justify-end gap-2 pt-1">
-                  <a
-                    href={link || "#"}
-                    target="_blank"
-                    rel="noreferrer"
+                  <button
+                    type="button"
                     className={`btn-secondary text-xs ${link ? "" : "pointer-events-none opacity-50"}`}
+                    disabled={!link}
+                    onClick={() => oppId && navigate(`/opportunity/${oppId}`)}
                   >
                     View
-                  </a>
+                  </button>
                   <button
                     type="button"
                     className="btn-primary text-xs"

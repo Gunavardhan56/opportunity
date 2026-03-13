@@ -1,3 +1,3 @@
-BOT_TOKEN = "8137757561:AAE9zmtI6kiG0ire2WSmDHYR9y8Jay_Zp8o"
+BOT_TOKEN = "8711775454:AAEhrhYATLw_Hm6eHJb5Ks1hu8-z7H3OUTo"
 BACKEND_URL = "http://localhost:8000/new_opportunity"
 
