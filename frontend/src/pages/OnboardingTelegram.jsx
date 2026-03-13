@@ -6,12 +6,12 @@ import OnboardingProgress from "../components/OnboardingProgress";
 const BOTS = [
   {
     name: "Opportunity Scanner Bot",
-    url: "https://t.me/your_opportunity_scanner_bot",
+    url: "http://t.me/opportunity_finder_hackbot",
     description: "Scans curated internship/job channels and forwards posts.",
   },
   {
     name: "Internship Alert Bot",
-    url: "https://t.me/your_internship_alert_bot",
+    url: "http://t.me/opportunity_intelligence_bot",
     description: "Sends you high-signal internship alerts mapped to your skills.",
   },
 ];

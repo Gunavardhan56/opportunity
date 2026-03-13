@@ -6,7 +6,7 @@ function MatchBar({ score }) {
   const color =
     pct >= 80 ? "bg-primary" : pct >= 60 ? "bg-secondary" : "bg-slate-300";
   return (
-    <div className="w-full bg-slate-100 rounded-full h-2 overflow-hidden">
+    <div className="w-full bg-slate-800 rounded-full h-2 overflow-hidden">
       <div className={`${color} h-2`} style={{ width: `${pct}%` }} />
     </div>
   );
@@ -60,6 +60,7 @@ export default function Eligible({ user }) {
           const { match, opportunity } = item;
           const score = Math.round((match?.score ?? 0) * 100);
           const isEligible = match?.eligible;
+          const link = opportunity?.link || "";
           return (
             <div
               key={match?._id}
@@ -78,7 +79,7 @@ export default function Eligible({ user }) {
                   </p>
                 )}
               </div>
-              <div className="w-full md:w-56 space-y-1">
+              <div className="w-full md:w-72 space-y-2">
                 <div className="flex items-center justify-between text-xs text-textSecondary">
                   <span>Match score</span>
                   <div className="flex gap-2 items-center">
@@ -91,6 +92,24 @@ export default function Eligible({ user }) {
                   </div>
                 </div>
                 <MatchBar score={score} />
+                <div className="flex justify-end gap-2 pt-1">
+                  <a
+                    href={link || "#"}
+                    target="_blank"
+                    rel="noreferrer"
+                    className={`btn-secondary text-xs ${link ? "" : "pointer-events-none opacity-50"}`}
+                  >
+                    View
+                  </a>
+                  <button
+                    type="button"
+                    className="btn-primary text-xs"
+                    onClick={() => window.open(link || "#", "_blank")}
+                    disabled={!link}
+                  >
+                    Apply
+                  </button>
+                </div>
               </div>
             </div>
           );

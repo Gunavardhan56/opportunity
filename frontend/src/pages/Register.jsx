@@ -57,7 +57,8 @@ export default function Register({ onAuthSuccess, isAuthenticated }) {
               required
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="w-full px-3 py-2 rounded-lg border border-border text-sm focus:outline-none focus:ring-1 focus:ring-primary bg-white"
+              placeholder="Your name"
+              className="w-full px-3 py-2 rounded-lg border border-border/60 text-sm focus:outline-none focus:ring-1 focus:ring-primary bg-slate-900 text-textPrimary placeholder:text-textSecondary/60"
             />
           </div>
           <div className="space-y-1">
@@ -69,7 +70,8 @@ export default function Register({ onAuthSuccess, isAuthenticated }) {
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-3 py-2 rounded-lg border border-border text-sm focus:outline-none focus:ring-1 focus:ring-primary bg-white"
+              placeholder="you@example.com"
+              className="w-full px-3 py-2 rounded-lg border border-border/60 text-sm focus:outline-none focus:ring-1 focus:ring-primary bg-slate-900 text-textPrimary placeholder:text-textSecondary/60"
             />
           </div>
           <div className="space-y-1">
@@ -81,7 +83,8 @@ export default function Register({ onAuthSuccess, isAuthenticated }) {
               required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-3 py-2 rounded-lg border border-border text-sm focus:outline-none focus:ring-1 focus:ring-primary bg-white"
+              placeholder="Create a password"
+              className="w-full px-3 py-2 rounded-lg border border-border/60 text-sm focus:outline-none focus:ring-1 focus:ring-primary bg-slate-900 text-textPrimary placeholder:text-textSecondary/60"
             />
           </div>
           <div className="space-y-1">
@@ -93,7 +96,8 @@ export default function Register({ onAuthSuccess, isAuthenticated }) {
               required
               value={confirm}
               onChange={(e) => setConfirm(e.target.value)}
-              className="w-full px-3 py-2 rounded-lg border border-border text-sm focus:outline-none focus:ring-1 focus:ring-primary bg-white"
+              placeholder="Repeat your password"
+              className="w-full px-3 py-2 rounded-lg border border-border/60 text-sm focus:outline-none focus:ring-1 focus:ring-primary bg-slate-900 text-textPrimary placeholder:text-textSecondary/60"
             />
           </div>
           {error && (

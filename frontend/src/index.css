@@ -4,17 +4,19 @@
 
 body {
   @apply bg-background text-textPrimary antialiased;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+    "Inter", sans-serif;
 }
 
 .card {
-  @apply bg-card border border-border rounded-xl shadow-sm hover:shadow-md transition-shadow;
+  @apply bg-card border border-border rounded-2xl shadow-lg shadow-black/40 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-200;
 }
 
 .btn-primary {
-  @apply inline-flex items-center justify-center px-4 py-2 rounded-lg bg-primary text-white text-sm font-medium hover:bg-indigo-600 transition-colors;
+  @apply inline-flex items-center justify-center px-4 py-2 rounded-lg bg-primary text-white text-sm font-medium hover:bg-indigo-500 focus:ring-2 focus:ring-primary/60 focus:ring-offset-2 focus:ring-offset-background transition-all duration-150;
 }
 
 .btn-secondary {
-  @apply inline-flex items-center justify-center px-4 py-2 rounded-lg bg-secondary text-white text-sm font-medium hover:bg-violet-600 transition-colors;
+  @apply inline-flex items-center justify-center px-4 py-2 rounded-lg bg-secondary text-white text-sm font-medium hover:bg-purple-500 focus:ring-2 focus:ring-secondary/60 focus:ring-offset-2 focus:ring-offset-background transition-all duration-150;
 }
 

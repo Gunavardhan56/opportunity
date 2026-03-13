@@ -2,16 +2,16 @@ import { useEffect, useState } from "react";
 import { getDeadlines } from "../api/api";
 
 function urgencyColor(deadlineDateIso) {
-  if (!deadlineDateIso) return "bg-slate-200 text-textSecondary";
+  if (!deadlineDateIso) return "bg-slate-800 text-textSecondary";
   try {
     const deadline = new Date(deadlineDateIso);
     const now = new Date();
     const diffDays = (deadline - now) / (1000 * 60 * 60 * 24);
-    if (diffDays <= 1) return "bg-red-100 text-red-700";
-    if (diffDays <= 3) return "bg-orange-100 text-orange-700";
-    return "bg-slate-100 text-textSecondary";
+    if (diffDays <= 1) return "bg-red-500/20 text-red-300";
+    if (diffDays <= 3) return "bg-orange-500/20 text-orange-300";
+    return "bg-slate-800 text-textSecondary";
   } catch {
-    return "bg-slate-100 text-textSecondary";
+    return "bg-slate-800 text-textSecondary";
   }
 }
 
@@ -67,7 +67,7 @@ export default function Deadlines() {
               </h3>
               <p className="text-xs text-textSecondary">{opp.company}</p>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-3">
               <span
                 className={`text-xs px-2 py-1 rounded-full ${urgencyColor(
                   opp.deadline_date
@@ -75,6 +75,24 @@ export default function Deadlines() {
               >
                 {opp.deadline || "Deadline soon"}
               </span>
+              <div className="flex justify-end gap-2">
+                <a
+                  href={opp.link || "#"}
+                  target="_blank"
+                  rel="noreferrer"
+                  className={`btn-secondary text-xs ${opp.link ? "" : "pointer-events-none opacity-50"}`}
+                >
+                  View
+                </a>
+                <button
+                  type="button"
+                  className="btn-primary text-xs"
+                  onClick={() => window.open(opp.link || "#", "_blank")}
+                  disabled={!opp.link}
+                >
+                  Apply
+                </button>
+              </div>
             </div>
           </div>
         ))}

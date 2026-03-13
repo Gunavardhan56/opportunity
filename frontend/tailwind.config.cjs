@@ -4,13 +4,13 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        background: "#F8FAFC",
-        card: "#FFFFFF",
+        background: "#050816",
+        card: "#0B1120",
         primary: "#6366F1",
-        secondary: "#8B5CF6",
-        textPrimary: "#0F172A",
-        textSecondary: "#475569",
-        border: "#E2E8F0",
+        secondary: "#A855F7",
+        textPrimary: "#E5E7EB",
+        textSecondary: "#9CA3AF",
+        border: "#1F2937",
       },
     },
   },

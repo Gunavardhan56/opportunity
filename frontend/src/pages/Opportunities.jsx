@@ -54,7 +54,7 @@ export default function Opportunities() {
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
         <div>
           <h1 className="text-2xl font-semibold text-textPrimary">
-            All opportunities
+            Explore opportunities
           </h1>
           <p className="text-sm text-textSecondary">
             Browse all parsed opportunities from your connected channels.
@@ -66,12 +66,12 @@ export default function Opportunities() {
             placeholder="Search by company or role"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="px-3 py-2 rounded-lg border border-border text-sm bg-white focus:outline-none focus:ring-1 focus:ring-primary"
+            className="px-3 py-2 rounded-lg border border-border/60 text-sm bg-slate-900 focus:outline-none focus:ring-1 focus:ring-primary placeholder:text-textSecondary/60 text-textPrimary"
           />
           <select
             value={skillFilter}
             onChange={(e) => setSkillFilter(e.target.value)}
-            className="px-3 py-2 rounded-lg border border-border text-sm bg-white focus:outline-none focus:ring-1 focus:ring-primary"
+            className="px-3 py-2 rounded-lg border border-border/60 text-sm bg-slate-900 focus:outline-none focus:ring-1 focus:ring-primary text-textPrimary"
           >
             <option value="">All skills</option>
             {allSkills.map((s) => (

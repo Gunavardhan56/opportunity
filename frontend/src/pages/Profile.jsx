@@ -1,9 +1,42 @@
 import { Link } from "react-router-dom";
 import { User, Briefcase, CheckCircle2, Clock, History } from "lucide-react";
+import { useEffect, useState } from "react";
+import {
+  areDeadlineNotificationsEnabled,
+  ensureNotificationPermission,
+  setDeadlineNotificationsEnabled,
+} from "../utils/deadlineNotifications";
 
 export default function Profile({ user }) {
   const skills = user?.skills || [];
   const batch = user?.batch;
+  const [notifEnabled, setNotifEnabled] = useState(false);
+  const [notifStatus, setNotifStatus] = useState("");
+
+  useEffect(() => {
+    setNotifEnabled(areDeadlineNotificationsEnabled());
+    if (typeof Notification !== "undefined") {
+      setNotifStatus(Notification.permission);
+    }
+  }, []);
+
+  const toggleNotifications = async (next) => {
+    if (!next) {
+      setDeadlineNotificationsEnabled(false);
+      setNotifEnabled(false);
+      return;
+    }
+
+    const perm = await ensureNotificationPermission();
+    setNotifStatus(perm);
+    if (perm === "granted") {
+      setDeadlineNotificationsEnabled(true);
+      setNotifEnabled(true);
+    } else {
+      setDeadlineNotificationsEnabled(false);
+      setNotifEnabled(false);
+    }
+  };
 
   return (
     <div className="max-w-2xl mx-auto space-y-6">
@@ -103,6 +136,41 @@ export default function Profile({ user }) {
             View match history →
           </Link>
         </div>
+      </div>
+
+      {/* Notifications */}
+      <div className="card p-6 space-y-3">
+        <div className="flex items-center justify-between gap-3">
+          <div className="space-y-1">
+            <h2 className="text-sm font-semibold text-textPrimary">Deadline notifications</h2>
+            <p className="text-sm text-textSecondary">
+              Get a Chrome notification when an opportunity is near its deadline (works while this site is open).
+            </p>
+          </div>
+          <button
+            type="button"
+            onClick={() => toggleNotifications(!notifEnabled)}
+            className={`relative inline-flex h-7 w-12 items-center rounded-full border transition-colors ${
+              notifEnabled ? "bg-primary/70 border-primary/40" : "bg-slate-900 border-border/60"
+            }`}
+            aria-pressed={notifEnabled}
+          >
+            <span
+              className={`inline-block h-5 w-5 transform rounded-full bg-white shadow transition-transform ${
+                notifEnabled ? "translate-x-6" : "translate-x-1"
+              }`}
+            />
+          </button>
+        </div>
+        {typeof Notification === "undefined" ? (
+          <div className="text-xs text-textSecondary">
+            Notifications aren’t supported in this browser.
+          </div>
+        ) : notifStatus === "denied" ? (
+          <div className="text-xs text-textSecondary">
+            Notifications are blocked in your browser settings. Allow notifications for this site to enable alerts.
+          </div>
+        ) : null}
       </div>
     </div>
   );

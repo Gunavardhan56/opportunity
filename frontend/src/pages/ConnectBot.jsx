@@ -3,13 +3,13 @@ export default function ConnectBot() {
     {
       name: "Opportunity Scanner Bot",
       description: "Scans curated internship/job channels and forwards posts.",
-      url: "https://t.me/your_opportunity_scanner_bot",
+      url: "http://t.me/opportunity_finder_hackbot",
     },
     {
       name: "Internship Alert Bot",
       description:
         "Sends you high-signal internship alerts mapped to your skills.",
-      url: "https://t.me/your_internship_alert_bot",
+      url: "http://t.me/opportunity_intelligence_bot",
     },
   ];
 

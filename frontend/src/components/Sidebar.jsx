@@ -19,10 +19,10 @@ const navItems = [
 
 export default function Sidebar() {
   return (
-    <aside className="hidden md:flex md:flex-col w-64 bg-white border-r border-border">
-      <div className="h-16 flex items-center px-6 border-b border-border">
-        <div className="text-lg font-semibold text-textPrimary">
-          Opportunity Intel
+    <aside className="hidden md:flex md:flex-col w-64 bg-[#020617] border-r border-border/60">
+      <div className="h-16 flex items-center px-6 border-b border-border/60">
+        <div className="text-lg font-semibold text-textPrimary tracking-tight">
+          OpptIntel
         </div>
       </div>
       <nav className="flex-1 px-3 py-4 space-y-1">
@@ -35,8 +35,8 @@ export default function Sidebar() {
               className={({ isActive }) =>
                 `flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
                   isActive
-                    ? "bg-primary text-white"
-                    : "text-textSecondary hover:bg-slate-100"
+                    ? "bg-primary/90 text-white shadow-lg shadow-primary/40"
+                    : "text-textSecondary hover:bg-slate-800/70"
                 }`
               }
             >

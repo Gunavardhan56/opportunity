@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getSystemStatus } from "../api/api";
 import StatCard from "../components/StatCard";
+import { checkAndNotifyDeadlines } from "../utils/deadlineNotifications";
 
 export default function Dashboard() {
   const [stats, setStats] = useState(null);
@@ -21,6 +22,18 @@ export default function Dashboard() {
     fetchStats();
   }, []);
 
+  useEffect(() => {
+    let intervalId;
+    // Run once on load, then poll while app is open.
+    checkAndNotifyDeadlines().catch(() => {});
+    intervalId = window.setInterval(() => {
+      checkAndNotifyDeadlines().catch(() => {});
+    }, 25 * 1000);
+    return () => {
+      if (intervalId) window.clearInterval(intervalId);
+    };
+  }, []);
+
   const totalOpps = stats?.opportunities ?? 0;
   const totalMatches = stats?.matches ?? 0;
   const reminders = stats?.reminders ?? 0;
@@ -30,12 +43,11 @@ export default function Dashboard() {
     <div className="space-y-6">
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
         <div>
-          <h1 className="text-2xl font-semibold text-textPrimary">
-            Opportunity overview
+          <h1 className="text-2xl md:text-3xl font-semibold text-textPrimary">
+            Welcome back
           </h1>
           <p className="text-sm text-textSecondary">
-            High-level view of opportunities, matches, and reminders in the
-            system.
+            Here&apos;s what&apos;s happening with your opportunity pipeline today.
           </p>
         </div>
       </div>
