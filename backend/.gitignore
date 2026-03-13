@@ -1,0 +1,51 @@
+######################
+# Python / FastAPI
+######################
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+
+######################
+# Virtual environments
+######################
+venv/
+.venv/
+env/
+.env/
+
+######################
+# IDE / Editor
+######################
+.vscode/
+.idea/
+*.swp
+*.swo
+*.DS_Store
+
+######################
+# Logs / Cache
+######################
+*.log
+.pytest_cache/
+.mypy_cache/
+
+######################
+# Environment & secrets
+######################
+.env.local
+.env.production
+.env.development
+.env.test
+
+######################
+# Telegram bot artifacts
+######################
+telegram-opportunity-bot/__pycache__/
+telegram-opportunity-bot/*.log
+
